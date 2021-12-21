@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "new": "plop"
+    "new": "plop",
+    "postinstall": "node ./bin/checkNodeVersion.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -30,6 +31,7 @@
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "semver": "^7.3.5",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -60,5 +62,8 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "engines": {
+    "node": "~17.2.0"
   }
 }

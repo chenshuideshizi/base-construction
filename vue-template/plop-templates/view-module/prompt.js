@@ -6,13 +6,14 @@ module.exports = {
       {
         type: 'input',
         name: 'moduleName',
-        message: '请输入模块名称',
-        validate: notEmpty('请输入模块名称')
+        message: '请输入模块名称(小驼峰格式,比如: helloWorld)',
+        validate: notEmpty('模块名称不能为空')
       },
       {
         type: 'input',
-        name: 'moduleDefaultTitle',
-        message: '模块title/首页title'
+        name: 'pageTitle',
+        message: '请输入模块首页标题',
+        validate: notEmpty('模块首页标题不能为空')
       },
       {
         type: 'input',
