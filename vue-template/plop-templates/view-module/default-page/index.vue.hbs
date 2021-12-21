@@ -1,0 +1,26 @@
+<template>
+  <div class="{{moduleName}}-index">{{moduleName}}-index</div>
+</template>
+
+<script>
+import provide from './provide'
+export default {
+  name: '{{moduleName}}-index',
+  provide: () => {
+    return {
+      ...provide()
+    }
+  },
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

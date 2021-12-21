@@ -1,27 +1,10 @@
 # vue2-template
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 功能
+1. 通过命令行创建组件目录及文件
+2. 通过命令行创建业务模块及文件
+2. 自动挂载路由
+3. 导出所有路由功能
 
 
 使用 vue-cli2 创建的项目，需要改成 webpack5

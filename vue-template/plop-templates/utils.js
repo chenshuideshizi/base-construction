@@ -1,0 +1,1 @@
+exports.notEmpty = errMsg => v => !v || v.trim() === '' ? `${errMsg}` : true

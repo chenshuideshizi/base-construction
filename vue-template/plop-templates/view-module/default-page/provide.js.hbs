@@ -1,0 +1,15 @@
+import Vue from 'vue'
+export default () => ({
+  // 静态数据共享
+  statusMap: {
+    message: 'hello data'
+  },
+  // 响应式数据共享
+  reactiveData: Vue.observable({
+    message: 'hello reactive data'
+  }),
+  // 响应式数据共享，分类管理
+  otherData: Vue.observable({
+    message: 'hello other data'
+  }),
+})
