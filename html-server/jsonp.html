@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsonp</title>
+</head>
+<body>
+
+    <script>
+        function jsonp() {
+            window.callback = function (res) {
+                alert('success')
+                console.log('res', res)
+            }
+            const jsonpScript = document.createElement('script')
+            jsonpScript.src = `http://localhost:3000/jsonp?callback=callback&name=vue`
+            jsonpScript.onload = function (res) {
+                delete window.callback
+                document.body.removeChild(jsonpScript)
+            }
+
+            document.body.appendChild(jsonpScript)
+        }
+        jsonp()
+    </script>
+    
+</body>
+</html>
