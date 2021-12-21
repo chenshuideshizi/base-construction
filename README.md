@@ -35,6 +35,15 @@
 - lint-staged、husky 对git提交进行控制
 - eslint 控制代码闺房
 
+box-sizing: border-box 默认
+
 **体验/性能**
+1. 图片格式规范
+    - 大图 webp/jpeg
+    - 透明图片用  png-8/png-24
+    - 小图标用 svg
+2. css规范
+    - 标签都应该有对应的 class 名
+    - css 深度不应该超过3层
 
 
