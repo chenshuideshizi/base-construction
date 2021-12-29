@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
+const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
+
 const routes = [
   {
     path: '/',
@@ -17,10 +20,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
+  ...asyncRoutes
 ]
 
+console.log('allRoutes', routes)
+
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

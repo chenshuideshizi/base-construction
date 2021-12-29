@@ -3,6 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import CustomComponents from './custom-components'
+Vue.use(CustomComponents)
+
+import CodeView from "vue-code-view";
+import "vue-code-view/lib/vue-code-viewer.css";
+Vue.use(CodeView);
+
+
 Vue.config.productionTip = false
 
 new Vue({
