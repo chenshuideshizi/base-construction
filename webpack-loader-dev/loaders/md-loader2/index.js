@@ -1,30 +1,46 @@
-var markdownIt = require('markdown-it')();
-const cheerio = require('cheerio');
+var parser = require('markdown-it')();
+var Token = require('markdown-it/lib/token')
 
-function genWrap(inner) {
-    return `
-<template>
-    <div class="wrap">${inner}</div>
-</template>
-<script>
-export default {
-    
-}
-</script>
-`
-}
+let id = 0
+
 module.exports = function (source) {
-    console.log('source', source)
-    const languageTagReg = '```()(\w+)````'
-    const newResource = markdownIt.render(source)
-    console.log('newResource', newResource)
+    const customComponentsMap = {}
+    parser.core.ruler.push(
+        'extract_script_or_style', 
+        function replace(state) {
+            let newTokens = [];
+            state.tokens
+                .filter(token => token.type == 'fence' && token.info == 'vue')
+                .forEach(token => {
+                    // 对vue 进行特特处理
+                    const componentName = `custom-component-${id++}`
+                    let t = new Token('html_block', componentName, 0);
+                    newTokens.push.apply(newTokens, t);
+                    customComponentsMap[componentName] = token.content
+                });
+                
+            state.tokens.push.apply(state.tokens, newTokens);
+        }
+    )
 
-    const $ = cheerio.load(newResource)
-    console.log('$', $)
-    const preEle = $('pre')
-    console.log('preEle', preEle)
-    Array.from($('pre')).forEach((curr, index) => {
-        console.log(index, item)
-    })
-    return getWrap(newResource)
+
+    const newResource = parser.render(source)
+
+    const vueSource = `
+        <template>
+            <section class="content me-doc">
+                ${newResource}
+            </section>
+        </template>
+        <script>
+            export default {
+                name: 'component-doc',
+                components: {
+
+                }
+            }
+        </script>
+        `
+    console.log('vueSource', vueSource)
+    return vueSource
 }

@@ -36,6 +36,9 @@ module.exports = {
     },
     resolveLoader: {
       modules: ['node_modules','./loaders/'],
+      alias: {
+        'md-loader2': './loaders/md-loader2'
+      }
     }
   },
   chainWebpack: (config) => { 
@@ -48,7 +51,7 @@ module.exports = {
       .end()
       // 自定义loader
       .use("md-loader")
-      .loader("md-loader")
+      .loader("md-loader2")
       .end();
   }
 }

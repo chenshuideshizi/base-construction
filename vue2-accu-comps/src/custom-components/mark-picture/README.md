@@ -1,9 +1,16 @@
 Mark Picture
 
+```vue
+<template>
+    <div>
+        <mark-picture :src="./static/1.jpeg"></mark-picture>
+    </div>
+</template>
 
-```
-<div>
-    <img src="./assets/images/1.jpeg">
-</div>
-<mark-picture :src="./static/1.jpeg"></mark-picture>
+<script>
+export default {
+    name: 'MarkPictureDemo'
+}
+</script>
+
 ```
