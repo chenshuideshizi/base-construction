@@ -175,14 +175,12 @@ export default {
     .sort-caret.ascending {
       width: 10px;
       height: 10px;
-      background: url('./images/arrow_up.png') no-repeat center;
       border-bottom: none;
     }
 
     .sort-caret.descending {
       width: 10px;
       height: 10px;
-      background: url('./images/arrow_down.png') no-repeat center;
       border-top: none;
     }
   }

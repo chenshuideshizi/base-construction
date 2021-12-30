@@ -36,35 +36,25 @@
     <div v-if="controlBarVisible" class="control-box">
       <template v-if="backBtnVisible">
         <div class="control-item back-btn" @click="back">
-          <!-- <img class="icon" src="./images/icon/icon_back_white.png"> -->
-          <img class="icon" src="./images/icon/icon_back_blue.png">
-          <div class="text white-text">社区视图</div>
+          <div class="text white-text">首页</div>
         </div>
 
         <div class="split-line" />
       </template>
 
       <div class="control-item" :class="{active: hasReset}" @click="reset">
-        <img v-if="hasReset" class="icon" src="./images/icon/icon_reset_white.png">
-        <img v-else class="icon" src="./images/icon/icon_reset_blue.png">
         <div class="text">复位</div>
       </div>
 
       <div class="control-item" :class="{active: dragable}" @click="drag">
-        <img v-if="dragable" class="icon" src="./images/icon/icon_drag_white.png">
-        <img v-else class="icon" src="./images/icon/icon_drag_blue.png">
         <div class="text">拖动</div>
       </div>
 
       <div class="control-item" :class="{active: smallerScalable}" @click="scaleSmaller">
-        <img v-if="smallerScalable" class="icon" src="./images/icon/icon_smaller_white.png">
-        <img v-else class="icon" src="./images/icon/icon_smaller_blue.png">
         <div class="text">缩小</div>
       </div>
 
       <div class="control-item" :class="{active: largerScalable}" @click="scaleLarger">
-        <img v-if="largerScalable" class="icon" src="./images/icon/icon_bigger_white.png">
-        <img v-else class="icon" src="./images/icon/icon_bigger_blue.png">
         <div class="text">放大</div>
       </div>
 
@@ -341,8 +331,6 @@ export default {
       align-items: center;
       width: auto;
       height: 56px;
-      background: url('./images/bg.png') no-repeat;
-      background-size: 100% 100%;
       padding: 7px 12px;
 
       .back-btn {

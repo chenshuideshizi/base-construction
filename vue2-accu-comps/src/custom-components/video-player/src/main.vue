@@ -20,10 +20,9 @@
         @click="play"
       >
         <img
-
           class="play-btn"
-          src="./images/icon_play.png"
-        >
+          src=""
+        > <!-- TODO: -->
       </div>
     </div>
     <slot />
