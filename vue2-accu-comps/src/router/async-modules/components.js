@@ -1,5 +1,5 @@
 const requireFiles = require.context('@/custom-components', true, /^\.\/[\w-]+\/\w+\.md$/)
-
+console.log(requireFiles.keys(), 'requireFile')
 const routes = requireFiles.keys().reduce((acc, key) => {
   const componentNameReg = /^\.\/([\w-]+)\/\w+\.md$/;
   const componentName = key.match(componentNameReg)[1]

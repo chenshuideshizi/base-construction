@@ -4,8 +4,8 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
-const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
+// const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
+// const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
 
 const routes = [
   {
@@ -21,7 +21,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  ...asyncRoutes
+  // ...asyncRoutes
+  {
+    path: '/mark-picture',
+    name: 'MarkPicture',
+    component: () => import(/* webpackChunkName: "mark-picture" */ '../custom-components/mark-picture/README.md')
+  }
 ]
 
 console.log('allRoutes', routes)

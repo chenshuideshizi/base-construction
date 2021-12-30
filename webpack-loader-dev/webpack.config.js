@@ -17,7 +17,7 @@ module.exports = {
             },
             {
                 test: /\.md$/,
-                use: ['md-loader2']
+                use: ['vue-loader', 'md-loader']
             }
         ]
     },
@@ -25,8 +25,8 @@ module.exports = {
         modules: ['./node_modules', './loaders'], // 配置 loader 的查找目录
          // 配置 resolveLoader.alias
         alias: {
-            'replace-loader': path.resolve(__dirname, 'loaders/replace-loader/index.js'),
-            'md-loader2': path.resolve(__dirname, 'loaders/md-loader2/index.js')
+            'replace-loader': path.resolve(__dirname, './loaders/replace-loader/index.js'),
+            'md-loader': path.resolve(__dirname, './loaders/md-loader/index.js')
         }
     }
 };

@@ -14,7 +14,6 @@ module.exports = function (source) {
     const customComponentsMap = {}
 
     parser.core.ruler.push('extract_vue_code',  state => {
-        console.log(state.tokens)
             const newTokens = state.tokens.reduce((acc, token, index) => {
                 if (token.type === 'fence' && token.info === 'vue') {
                     // 对 vue 进行特殊处理
@@ -25,16 +24,8 @@ module.exports = function (source) {
                 }
                 return acc
             }, [])
-            const tokenOpen = new Token('', 'div', 1);
-            const textToken = new Token('html_block', '', 0)
-            textToken.content = 'hello world'
-    
-            const tokenClose = new Token('', 'div', -1);
-            state.tokens.push(tokenOpen, textToken, tokenClose)
-            console.log('------>')
-            console.log(state.tokens)
-
-            console.log('<-------')
+            let t = new Token('html_block', 'h1', 0);
+            state.tokens.push(t)
         }
     )
 
@@ -56,9 +47,8 @@ module.exports = function (source) {
     //     })
 	// 	return true;
     // });
-
-    const newResource = parser.render(source)
     console.log('newSource', newResource)
+    const newResource = parser.render(source)
     const vueSource = `
         <template>
             <section class="content me-doc">

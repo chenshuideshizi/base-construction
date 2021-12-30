@@ -37,7 +37,7 @@ module.exports = {
     resolveLoader: {
       modules: ['node_modules','./loaders/'],
       alias: {
-        'md-loader2': './loaders/md-loader2'
+        'md-loader': './loaders/md-loader'
       }
     }
   },
@@ -51,7 +51,7 @@ module.exports = {
       .end()
       // 自定义loader
       .use("md-loader")
-      .loader("md-loader2")
+      .loader("md-loader")
       .end();
   }
 }

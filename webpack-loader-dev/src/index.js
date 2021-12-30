@@ -1,2 +1,2 @@
-import('./test-word-replace')
-import('./test-markdown-transform')
+import('./replace-demo.js')
+import('./md-demo.md')
