@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import  MarkdowPreview  from './components/markdown-preview'
+Vue.use(MarkdowPreview)
+
 import CustomComponents from './custom-components'
 Vue.use(CustomComponents)
 

@@ -10,17 +10,22 @@ module.exports = function (source) {
     }
     this.cacheable(false)
 
+    let markdownCodeStr = ''
+
     parser.core.ruler.push('extract_vue_code',  state => {
             state.tokens.reduce((acc, token, index) => {
                 if (token.type === 'fence' && token.info === 'vue') {
                     // 对 vue 进行特殊处理
                     const componentName = `custom-component-${id++}`
                     let t = new Token('html_block', 'h1', 0);
+                    markdownCodeStr = token.content
+                    const openLabel = new Token('', 'markdown-preview', 1);
+                    openLabel.attrs = token.attrs || []
+                    openLabel.attrs.push([":codeStr", "markdownCodeStr"])
 
-                    const openLabel = new Token('', 'div', 1);
                     const textLabel = new Token('html_block', '', 0)
-                    textLabel.content = 'Hello Vue Code'
-                    const closeLabel = new Token('', 'div', -1);
+                    textLabel.content = '{{markdownCodeStr}}'
+                    const closeLabel = new Token('', 'markdown-preview', -1);
                     state.tokens.push(openLabel, textLabel, closeLabel)
                 }
                 return acc
@@ -47,7 +52,9 @@ module.exports = function (source) {
 	// 	return true;
     // });
 
+    let testStr = '111'
     const newResource = parser.render(source)
+    const dataVal = JSON.stringify({ markdownCodeStr: markdownCodeStr })
     const vueSource = `
         <template>
             <section class="content me-doc">
@@ -56,12 +63,13 @@ module.exports = function (source) {
         </template>
         <script>
             export default {
-                name: 'component-doc',
-                components: {
-
+                name: "component-doc",
+                data() {
+                    return (${dataVal})
                 }
             }
         </script>
         `
+        console.log(vueSource)
     return vueSource
 }
