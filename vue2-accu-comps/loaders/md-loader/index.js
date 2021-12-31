@@ -4,37 +4,27 @@ var Token = require('markdown-it/lib/token')
 let id = 0
 
 module.exports = function (source) {
-    console.log('start run 【md-loader】')
     // TODO:不知道为什么会有空的 source 进来
     if (source.length === 0) {
         return ''
     }
-    console.log('start', source)
     this.cacheable(false)
-    const customComponentsMap = {}
 
     parser.core.ruler.push('extract_vue_code',  state => {
-        console.log(state.tokens)
-            const newTokens = state.tokens.reduce((acc, token, index) => {
+            state.tokens.reduce((acc, token, index) => {
                 if (token.type === 'fence' && token.info === 'vue') {
                     // 对 vue 进行特殊处理
                     const componentName = `custom-component-${id++}`
                     let t = new Token('html_block', 'h1', 0);
 
-                    customComponentsMap[componentName] = token.content
+                    const openLabel = new Token('', 'div', 1);
+                    const textLabel = new Token('html_block', '', 0)
+                    textLabel.content = 'Hello Vue Code'
+                    const closeLabel = new Token('', 'div', -1);
+                    state.tokens.push(openLabel, textLabel, closeLabel)
                 }
                 return acc
             }, [])
-            const tokenOpen = new Token('', 'div', 1);
-            const textToken = new Token('html_block', '', 0)
-            textToken.content = 'hello world'
-    
-            const tokenClose = new Token('', 'div', -1);
-            state.tokens.push(tokenOpen, textToken, tokenClose)
-            console.log('------>')
-            console.log(state.tokens)
-
-            console.log('<-------')
         }
     )
 
@@ -58,7 +48,6 @@ module.exports = function (source) {
     // });
 
     const newResource = parser.render(source)
-    console.log('newSource', newResource)
     const vueSource = `
         <template>
             <section class="content me-doc">
