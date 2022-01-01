@@ -4,10 +4,12 @@ var Token = require('markdown-it/lib/token')
 let id = 0
 
 module.exports = function (source) {
+    console.log('start Loader')
     // TODO:不知道为什么会有空的 source 进来
     if (source.length === 0) {
         return ''
     }
+    console.log('start Loader2')
     this.cacheable(false)
 
     let markdownCodeStr = ''
@@ -52,7 +54,6 @@ module.exports = function (source) {
 	// 	return true;
     // });
 
-    let testStr = '111'
     const newResource = parser.render(source)
     const dataVal = JSON.stringify({ markdownCodeStr: markdownCodeStr })
     const vueSource = `
@@ -70,6 +71,5 @@ module.exports = function (source) {
             }
         </script>
         `
-        console.log(vueSource)
     return vueSource
 }
