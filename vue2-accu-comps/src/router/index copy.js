@@ -4,8 +4,8 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
-const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
+// const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
+// const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
 
 const routes = [
   {
@@ -22,12 +22,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   // ...asyncRoutes
-  {
-    path: '/mark-picture-readme',
-    name: 'MarkPicture',
-    // component: () => import(/* webpackChunkName: "mark-picture" */ '../custom-components/mark-picture/README.md') // TODO: 使用 import 会进入 loader 多次
-    component: resolve => require(['../custom-components/mark-picture/README.md'],resolve) 
-  }
+  // {
+  //   path: '/mark-picture',
+  //   name: 'MarkPicture',
+  //   // component: () => import(/* webpackChunkName: "mark-picture" */ '../custom-components/mark-picture/README.md') // TODO: 使用 import 会进入 loader 多次
+  //   component: resolve => require(['../custom-components/mark-picture/README.md'],resolve) 
+  // }
 ]
 
 console.log('allRoutes', routes)

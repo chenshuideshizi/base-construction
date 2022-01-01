@@ -35,10 +35,7 @@ module.exports = {
       }
     },
     resolveLoader: {
-      modules: ['node_modules','./loaders/'],
-      alias: {
-        'md-loader': './loaders/md-loader'
-      }
+      modules: ['node_modules','./loaders/']
     }
   },
   chainWebpack: (config) => { 
@@ -50,8 +47,8 @@ module.exports = {
       .loader("vue-loader")
       .end()
       // 自定义loader
-      .use("md-loader")
-      .loader("md-loader")
+      .use("own-md-loader")
+      .loader("own-md-loader")
       .end();
   }
 }

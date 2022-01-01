@@ -9,10 +9,6 @@ Vue.use(MarkdowPreview)
 import CustomComponents from './custom-components'
 Vue.use(CustomComponents)
 
-import CodeView from "vue-code-view";
-import "vue-code-view/lib/vue-code-viewer.css";
-Vue.use(CodeView);
-
 
 Vue.config.productionTip = false
 
